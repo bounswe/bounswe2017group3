@@ -1,9 +1,10 @@
 # CmpE 352/451 Group 3
 
-This is our course project repository for the courses CmpE352/451 at Boğaziçi University.
+This project is about interest based communities. It aims to provide a web and mobile application for members of a community to create and organize content and connect with each other in meaningful ways. We're currently in the process of planning and designing our system.
 
 ## Links
 - [Wiki](https://github.com/bounswe/bounswe2017group3/wiki)
+- [Milestones](https://github.com/bounswe/bounswe2017group3/milestones)
 
 ## Contributors
 - [Samed Düzçay](https://github.com/bounswe/bounswe2017group3/wiki/Samed-D%C3%BCz%C3%A7ay)
