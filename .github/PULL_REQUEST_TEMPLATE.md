@@ -6,7 +6,7 @@
 
 A short summary of this issue...
 
-## Changes
+### Changes
 
 - Change 1.
 - Change 2.
