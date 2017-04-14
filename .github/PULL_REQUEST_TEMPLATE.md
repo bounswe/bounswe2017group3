@@ -6,11 +6,17 @@
 
 A short summary of this issue...
 
-## Visuals
+### Changes
+
+- Change 1.
+- Change 2.
+- ...
+
+## Visuals
 
 If it contains anything visual, put here. Otherwise, remove this block.
 
-## Testing
+## Testing
 
 How can this contribution be tested? Use the following structure:
 
