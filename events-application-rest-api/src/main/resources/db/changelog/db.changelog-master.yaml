@@ -29,3 +29,11 @@ databaseChangeLog:
               - column:
                   name: fullname
                   type: varchar(255)
+  - changeSet:
+      id: 2
+      author: smddzcy
+      changes:
+        - addUniqueConstraint:
+            columnNames: username, email
+            constraintName: uniqueUsernameEmail
+            tableName: users
