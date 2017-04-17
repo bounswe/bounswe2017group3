@@ -1,0 +1,7 @@
+{
+  "name": "Event Listing Application REST API",
+  "description": "This is a small REST API for a events listing application.",
+  "repository": "https://github.com/bounswe/bounswe2017group3",
+  "image": "heroku/java",
+  "addons": [ "heroku-postgresql" ]
+}
