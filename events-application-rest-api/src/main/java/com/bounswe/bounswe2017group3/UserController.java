@@ -41,28 +41,37 @@ public class UserController {
         this.repository = repository;
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/{username}",
+        produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public @ResponseBody User userByUsername(@PathVariable("username") String username){
+        System.out.println("user");
+        return repository.findByUsername(username);
+    }
+    
     @RequestMapping(method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public @ResponseBody List<User> user(ModelMap model) {
         return repository.findAll();
     }
-    @RequestMapping(method = RequestMethod.GET,value ="{username}", 
-        produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public @ResponseBody User userByUsername(@PathVariable String username){
-        return repository.findByUsername(username);
+     
+    @RequestMapping(method=RequestMethod.PUT,
+            value="/{username}",
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public @ResponseBody User update(@PathVariable("username") String username, ModelMap model,
+        @ModelAttribute("updateUser") @Valid User user,
+        BindingResult result) {
+        User updatedUser = repository.findByUsername(username);
+        if (!result.hasErrors()) {
+           
+            updatedUser.setEmail(user.getEmail());
+            updatedUser.setFullname(user.getFullname());
+            updatedUser.setUsername(user.getUsername());
+            repository.save(updatedUser);
+ 
+        }
+        return updatedUser; 
     }
-    
-    @RequestMapping(method=RequestMethod.PUT, value="{id}")
-    public User update(@PathVariable String id, @RequestBody User user) {
-         User update = repository.findById(id);
-      
-        update.setEmail(user.getEmail());
-        update.setFullname(user.getFullname());
-        update.setUsername(user.getUsername());
-        return repository.save(update); 
-       
-    }
-
+   
 
     @RequestMapping(method = RequestMethod.POST,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
