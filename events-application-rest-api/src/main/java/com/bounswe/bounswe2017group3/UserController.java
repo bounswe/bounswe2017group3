@@ -27,8 +27,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
 import java.util.List;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/user")
@@ -41,10 +43,10 @@ public class UserController {
         this.repository = repository;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/{username}",
+    @RequestMapping(method = RequestMethod.GET, value = "",
+            params="username",
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public @ResponseBody User userByUsername(@PathVariable("username") String username){
-        System.out.println("user");
+    public @ResponseBody User userByUsername(@RequestParam("username") String username){
         return repository.findByUsername(username);
     }
     
@@ -55,21 +57,20 @@ public class UserController {
     }
      
     @RequestMapping(method=RequestMethod.PUT,
-            value="/{username}",
+            value="",
+            params="username",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public @ResponseBody User update(@PathVariable("username") String username, ModelMap model,
-        @ModelAttribute("updateUser") @Valid User user,
-        BindingResult result) {
-        User updatedUser = repository.findByUsername(username);
-        if (!result.hasErrors()) {
-           
-            updatedUser.setEmail(user.getEmail());
-            updatedUser.setFullname(user.getFullname());
-            updatedUser.setUsername(user.getUsername());
-            repository.save(updatedUser);
- 
-        }
-        return updatedUser; 
+    public @ResponseBody User update(@RequestParam MultiValueMap<String, String> params){
+        
+        String oldUsername = params.get("username").get(0);
+        String newUsername = params.get("username").get(1);
+        User updatedUser = repository.findByUsername(oldUsername);
+        updatedUser.setEmail(params.get("email").get(0));
+        updatedUser.setFullname(params.get("fullname").get(0));
+        updatedUser.setUsername(newUsername);
+        repository.save(updatedUser);
+        return updatedUser;
+
     }
    
 
