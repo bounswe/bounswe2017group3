@@ -11,13 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- *
- * @author gokce
- */
-
-@Table(name = "errors")
-@Entity
 public class ErrorResponse implements Serializable {
         @Id
 	private int errorCode;
