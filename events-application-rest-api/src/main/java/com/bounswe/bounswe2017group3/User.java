@@ -45,7 +45,16 @@ public class User implements Serializable {
      * Name and surname of the user.
      */
     private String fullname;
-
+    
+    /**
+     *  Returns the id of the user.
+     * 
+     * @ return Id of the user.
+     */
+    public long getId(){
+        return id;
+    }
+    
     /**
      * Returns the username of the user.
      *
