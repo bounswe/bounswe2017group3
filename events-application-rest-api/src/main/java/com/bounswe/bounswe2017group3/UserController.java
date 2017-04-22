@@ -68,7 +68,6 @@ public class UserController {
             String newEmail = params.get("email").get(0);
             String newFullname = params.get("fullname").get(0);
             int count =repository.numberOfUsersWithEmail(newEmail);
-            System.out.println(count);
             if(count == 0 || newEmail.equalsIgnoreCase(update.getEmail())){
                 update.setEmail(newEmail);
             }else{
@@ -76,7 +75,6 @@ public class UserController {
             }
             update.setFullname(newFullname);
             count = repository.numberOfUsersWithUsername(newUsername);
-            System.out.println(count);
             if(count == 0 || newUsername.equalsIgnoreCase(update.getUsername())){
                 
                 update.setUsername(newUsername);
@@ -85,45 +83,8 @@ public class UserController {
             }
 
             return repository.save(update); 
-             
-             /*update.setEmail(user.getEmail());
-             update.setFullname(user.getFullname());
-             update.setUsername(user.getUsername());
-             return repository.save(update); 
-        */ 
-         //System.out.println("sadfds");
-         //return user;
-          
-      } 
-    /*
-    @RequestMapping(method=RequestMethod.PUT, value="/{id}",
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-     public @ResponseBody User update(@PathVariable("id") long id, @RequestParam MultiValueMap<String, String> params) {
-        System.out.println(id);
-        System.out.println(repository.findById(id));
-        User update = repository.findById(id);
-        System.out.println(update.toString());
-        System.out.println(params.toString());
-        String newUsername = params.get("username").get(0);
-        String newEmail = params.get("email").get(0);
-        String newFullname = params.get("fullname").get(0);
-        if(repository.numberOfUsersWithEmail(newEmail) == 0 || newEmail == update.getEmail()){
-            update.setEmail(newEmail);
-        }else{
-            throw new CustomException("1001","Given email address belongs to someone else.");
-        }
-        update.setFullname(newFullname);
-        if(repository.numberOfUsersWithUsername(newUsername) == 0 || newUsername == update.getUsername()){
-            update.setUsername(newUsername);
-        }else{
-            throw new CustomException("1002","Given username belongs to someone else.");
-        }
-
-        return repository.save(update); 
-
-        
      }
-      */ 
+      
     @RequestMapping(method=RequestMethod.PUT,
             value="",
             params="username",
@@ -169,4 +130,3 @@ public class UserController {
         return new ResponseEntity<ErrorResponse>(error, HttpStatus.OK);
     }
 }
-
