@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
 import java.util.List;
+import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -61,7 +62,7 @@ public class UserController {
      public @ResponseBody User update(@PathVariable long id, ModelMap model,
         @ModelAttribute("updateUser") @Valid User user,
         BindingResult result) {
-        if (!result.hasErrors()) {
+        if (!result.hasErrors() && repository.numberOfUsersWithUsername(user.getUsername()) == 0 && repository.numberOfUsersWithEmail(user.getEmail()) == 0) {
             User update = repository.findById(id);
             update.setEmail(user.getEmail());
             update.setFullname(user.getFullname());
@@ -79,12 +80,16 @@ public class UserController {
         
         String oldUsername = params.get("username").get(0);
         String newUsername = params.get("username").get(1);
-        User updatedUser = repository.findByUsername(oldUsername);
-        updatedUser.setEmail(params.get("email").get(0));
-        updatedUser.setFullname(params.get("fullname").get(0));
-        updatedUser.setUsername(newUsername);
-        repository.save(updatedUser);
-        return updatedUser;
+        if(repository.numberOfUsersWithUsername(newUsername) == 0 && repository.numberOfUsersWithEmail(params.get("email").get(0)) == 0){
+            User updatedUser = repository.findByUsername(oldUsername);
+            updatedUser.setEmail(params.get("email").get(0));
+            updatedUser.setFullname(params.get("fullname").get(0));
+            updatedUser.setUsername(newUsername);
+            return repository.save(updatedUser);
+        }else{
+           return null;
+        }
+        
 
     }
     
