@@ -53,6 +53,7 @@ public class UserController {
         if (!result.hasErrors()) {
             repository.save(user);
         }
+        // TODO: Show an error when the result has errors.
         return user;
     }
 }
