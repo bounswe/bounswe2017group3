@@ -47,6 +47,7 @@ public class UserController {
             params="username",
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public @ResponseBody User userByUsername(@RequestParam("username") String username){
+        
         return repository.findByUsername(username);
     }
     
@@ -56,11 +57,25 @@ public class UserController {
         return repository.findAll();
     }
      
+    @RequestMapping(method=RequestMethod.PUT, value="{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+     public @ResponseBody User update(@PathVariable long id, ModelMap model,
+        @ModelAttribute("updateUser") @Valid User user,
+        BindingResult result) {
+        if (!result.hasErrors()) {
+            User update = repository.findById(id);
+            update.setEmail(user.getEmail());
+            update.setFullname(user.getFullname());
+            update.setUsername(user.getUsername());
+            return repository.save(update); 
+        }
+        return user;
+     }
+    
     @RequestMapping(method=RequestMethod.PUT,
             value="",
             params="username",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public @ResponseBody User update(@RequestParam MultiValueMap<String, String> params){
+    public @ResponseBody User updateByUsername(@RequestParam MultiValueMap<String, String> params){
         
         String oldUsername = params.get("username").get(0);
         String newUsername = params.get("username").get(1);
@@ -72,6 +87,7 @@ public class UserController {
         return updatedUser;
 
     }
+    
    
 
     @RequestMapping(method = RequestMethod.POST,
