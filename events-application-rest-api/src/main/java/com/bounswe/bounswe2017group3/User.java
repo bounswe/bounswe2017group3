@@ -45,16 +45,16 @@ public class User implements Serializable {
      * Name and surname of the user.
      */
     private String fullname;
-    
+
     /**
-     *  Returns the id of the user.
-     * 
-     * @ return Id of the user.
+     * Returns the id of the user.
+     *
+     * @return ID of the user.
      */
-    public long getId(){
+    public long getId() {
         return id;
     }
-    
+
     /**
      * Returns the username of the user.
      *
@@ -171,7 +171,8 @@ public class User implements Serializable {
      * Checks whether the given password is this user's password or not.
      *
      * @param password Password to check.
-     * @return True if given password the same as user's password, false otherwise.
+     * @return True if given password the same as user's password, false
+     * otherwise.
      */
     public boolean checkPassword(String password) {
         return this.password.equals(encryptPassword(password));
