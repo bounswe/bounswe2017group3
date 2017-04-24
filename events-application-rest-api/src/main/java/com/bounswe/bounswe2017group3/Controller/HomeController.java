@@ -1,4 +1,4 @@
-package com.bounswe.bounswe2017group3;
+package com.bounswe.bounswe2017group3.Controller;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
