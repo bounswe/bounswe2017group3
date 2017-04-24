@@ -121,3 +121,14 @@ You may update a user using this action. It takes a JSON object containing the n
   "fullname": "Ahmet Büyük"
 }
 ```
+
+# Setting Up the Development Environment
+
+For development, you need Maven and PostgreSQL installed on your computer.
+
+1. Create a database in your local and make sure the Postgres daemon is running on the background.
+2. Get the database URL and put it your path variables with the name `JDBC_DATABASE_URL`. This is where our application looks for the database url and it wouldn't work without it.
+3. Open the project folder and run `mvn install`.  
+ This will install the dependencies and build the project. You should see a success message with the title `BUILD SUCCESS` after a few minutes (or seconds, depending on your environment).
+4. To run the application, run `java -Dserver.port=8080 -jar target/*.jar`, again in the project folder.  
+ This will run the application in the background, so you should keep the terminal open. Go to http://localhost:8080/ and see if it works, you should see the API root.
