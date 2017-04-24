@@ -17,8 +17,8 @@ package com.bounswe.bounswe2017group3.Controller;
 
 import com.bounswe.bounswe2017group3.CustomException;
 import com.bounswe.bounswe2017group3.ErrorResponse;
-import com.bounswe.bounswe2017group3.User;
-import com.bounswe.bounswe2017group3.UserRepository;
+import com.bounswe.bounswe2017group3.Model.User;
+import com.bounswe.bounswe2017group3.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

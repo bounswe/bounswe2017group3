@@ -1,6 +1,6 @@
-package com.bounswe.bounswe2017group3;
+package com.bounswe.bounswe2017group3.Repository;
 
-import java.util.List;
+import com.bounswe.bounswe2017group3.Model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
