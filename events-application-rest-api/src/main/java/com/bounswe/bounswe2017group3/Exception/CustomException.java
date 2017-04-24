@@ -1,4 +1,4 @@
-package com.bounswe.bounswe2017group3;
+package com.bounswe.bounswe2017group3.Exception;
 
 /**
  * @author gokce

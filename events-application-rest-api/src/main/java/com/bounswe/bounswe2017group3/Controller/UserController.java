@@ -15,7 +15,7 @@
  */
 package com.bounswe.bounswe2017group3.Controller;
 
-import com.bounswe.bounswe2017group3.CustomException;
+import com.bounswe.bounswe2017group3.Exception.CustomException;
 import com.bounswe.bounswe2017group3.ErrorResponse;
 import com.bounswe.bounswe2017group3.Model.User;
 import com.bounswe.bounswe2017group3.Repository.UserRepository;
