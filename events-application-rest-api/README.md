@@ -44,9 +44,9 @@ A User object has the following attributes:
 [
   {
     "id": 1,
-    "username": "esra",
-    "email": "tl",
-    "fullname": "aras 1"
+    "username": "hakan123",
+    "email": "hakan.koca@gmail.com",
+    "fullname": "Hakan Koca"
   },
   {
     "id": 2,
