@@ -1,6 +1,7 @@
 package com.bounswe.bounswe2017group3;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -119,7 +120,19 @@ public class Event implements Serializable {
      * @param date date of the event.
      */
     public void setDate(Date date) {this.date = date;}
-
+    
+    /*
+    Privacy Option
+    */
+    @NotNull                  //Privacy option cannot be null
+    private Boolean privacy;  //Privacy option of the event.
+    
+    //Returns the privacy option of the event.
+    public Boolean getPrivacy() {return privacy;}
+    
+    //Sets the privacy option of the event.
+    public void setPrivacy(Boolean privacy) {this.privacy = privacy;}
+    
     /**
      * Returns the string representation of the event object.
      *
@@ -133,6 +146,7 @@ public class Event implements Serializable {
                 ", description='" + description + '\'' +
                 ", date='" + date + '\'' +
                 ", location='" + location + '\'' +
+                ", privacy='" + privacy + '\'' +
                 '}';
     }
 }

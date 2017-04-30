@@ -65,4 +65,13 @@ databaseChangeLog:
               - column:
                   name: date
                   type: timestamp
-
+changeSet:
+  id: 4
+  author: MertKalaylioglu
+  changes:
+  - addColumn:
+      columns:
+      - column:
+          name: privacy
+          type: boolean
+      tableName: events
