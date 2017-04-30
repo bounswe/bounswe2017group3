@@ -10,7 +10,10 @@ import org.springframework.stereotype.Repository;
 public interface EventRepository extends JpaRepository<Event, Long> {
 
     public Event findByName(String name);
-
+    
+    //List events with respect to privacy option
+    public List<Event> findByPrivacyoption(Boolean privacyoption);
+    
     @Query("SELECT COUNT(e) FROM Event e where e.name = :name")
     public int numberOfEventsWithName(@Param("name") String name);
 

@@ -15,6 +15,7 @@
  */
 package com.bounswe.bounswe2017group3;
 
+import com.bounswe.bounswe2017group3.Exception.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -52,20 +53,30 @@ public class EventController {
 
         return repository.findByName(name);
     }
+    
+    //List events with respect to privacy option
+    //Example = localhost:8080/event?privacyoption=true
+    @RequestMapping(method = RequestMethod.GET, value = "",
+            params="privacyoption",
+        produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public @ResponseBody
+    List<Event> eventByPrivacyoption(@RequestParam("privacyoption") Boolean privacyoption){
 
-    @RequestMapping(value="{name}", method = RequestMethod.POST)
-    public @ResponseBody Event insertData(ModelMap model,
-                                          @ModelAttribute("insertEvent") @Valid Event event,
-                                          BindingResult result) {
-
-        if(!result.hasErrors()){
-            repository.save(event);
-        }
-
-        return event;
-
+        return repository.findByPrivacyoption(privacyoption);
     }
 
+    //Post code is revised.
+    @RequestMapping(method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public @ResponseBody Event insertData(ModelMap model,
+                                         @ModelAttribute("insertEvent") @Valid Event event,
+                                         BindingResult result) {
+        if (!result.hasErrors()) {
+            repository.save(event);
+        }
+        return event;
+    }
+    
     @ExceptionHandler(CustomException.class)
     public ResponseEntity<ErrorResponse> exceptionHandler(Exception ex) {
         ErrorResponse error = new ErrorResponse();
