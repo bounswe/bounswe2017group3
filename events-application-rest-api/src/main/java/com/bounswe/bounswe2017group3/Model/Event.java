@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import javax.validation.constraints.NotNull;
 
 @Table(name = "events")
 @Entity
@@ -120,6 +121,18 @@ public class Event implements Serializable {
      */
     public void setDate(Date date) {this.date = date;}
 
+    /*
+    Privacy Option
+    */
+    @NotNull                        //Privacy option cannot be null
+    private Boolean privacyoption;  //Privacy option of the event.
+    
+    //Returns the privacy option of the event.
+    public Boolean getPrivacyoption() {return privacyoption;}
+    
+    //Sets the privacy option of the event.
+    public void setPrivacyoption(Boolean privacyoption) {this.privacyoption = privacyoption;}
+    
     /**
      * Returns the string representation of the event object.
      *
@@ -133,6 +146,7 @@ public class Event implements Serializable {
                 ", description='" + description + '\'' +
                 ", date='" + date + '\'' +
                 ", location='" + location + '\'' +
+                ", privacyoption='" + privacyoption + '\'' +
                 '}';
     }
 }
