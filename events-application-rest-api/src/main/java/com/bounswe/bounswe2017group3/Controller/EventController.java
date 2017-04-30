@@ -53,6 +53,17 @@ public class EventController {
         return repository.findByName(name);
     }
 
+    //List events with respect to privacy option
+    //Example = localhost:8080/user?privacyoption=true
+    @RequestMapping(method = RequestMethod.GET, value = "",
+            params="privacyoption",
+        produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public @ResponseBody
+    List<Event> eventByPrivacyoption(@RequestParam("privacyoption") Boolean privacyoption){
+
+        return repository.findByPrivacyoption(privacyoption);
+    }
+    
     @RequestMapping(value="{name}", method = RequestMethod.POST)
     public @ResponseBody Event insertData(ModelMap model,
                                           @ModelAttribute("insertEvent") @Valid Event event,
