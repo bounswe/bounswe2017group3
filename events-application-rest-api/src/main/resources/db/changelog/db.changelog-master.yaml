@@ -37,3 +37,32 @@ databaseChangeLog:
             columnNames: username, email
             constraintName: uniqueUsernameEmail
             tableName: users
+  - changeSet:
+      id: 3
+      author: esra-aydemir
+      changes:
+        - createTable:
+            tableName: events
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: location
+                  type: varchar(255)
+              - column:
+                  name: description
+                  type: varchar(255)
+              - column:
+                  name: date
+                  type: timestamp
+
