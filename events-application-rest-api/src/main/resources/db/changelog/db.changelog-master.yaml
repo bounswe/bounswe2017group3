@@ -65,4 +65,8 @@ databaseChangeLog:
               - column:
                   name: date
                   type: timestamp
-
+              - column:
+                  name: privacyoption
+                  type: boolean
+                  constraints:
+                    nullable: false
