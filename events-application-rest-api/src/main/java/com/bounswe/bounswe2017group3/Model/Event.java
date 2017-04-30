@@ -124,7 +124,7 @@ public class Event implements Serializable {
     /*
     Privacy Option
     */
-    @NotNull                        //Privacy option cannot be null
+    @NotNull                  //Privacy option cannot be null
     private Boolean privacy;  //Privacy option of the event.
     
     //Returns the privacy option of the event.

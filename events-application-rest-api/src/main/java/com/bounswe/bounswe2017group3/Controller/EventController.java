@@ -54,6 +54,7 @@ public class EventController {
         return repository.findByName(name);
     }
     
+    //List events with respect to privacy option
     @RequestMapping(method = RequestMethod.GET, value = "",
             params="privacy",
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -63,6 +64,7 @@ public class EventController {
         return repository.findByPrivacy(privacy);
     }
 
+    //Post code is revised.
     @RequestMapping(method = RequestMethod.POST,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public @ResponseBody Event insertData(ModelMap model,
