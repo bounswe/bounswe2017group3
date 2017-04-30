@@ -15,6 +15,7 @@
  */
 package com.bounswe.bounswe2017group3;
 
+import com.bounswe.bounswe2017group3.Exception.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -52,8 +53,18 @@ public class EventController {
 
         return repository.findByName(name);
     }
+    
+    @RequestMapping(method = RequestMethod.GET, value = "",
+            params="privacy",
+        produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public @ResponseBody
+    List<Event> eventByPrivacy(@RequestParam("privacy") Boolean privacy){
 
-    @RequestMapping(value="{name}", method = RequestMethod.POST)
+        return repository.findByPrivacy(privacy);
+    }
+
+    @RequestMapping(method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public @ResponseBody Event insertData(ModelMap model,
                                           @ModelAttribute("insertEvent") @Valid Event event,
                                           BindingResult result) {
