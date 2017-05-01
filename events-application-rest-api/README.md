@@ -122,6 +122,14 @@ You may update a user using this action. It takes a JSON object containing the n
 }
 ```
 
+### Delete an Event [DELETE]
+
+You may delete an event using this action. It takes a query param to know which user to update.
+
++ Parameters
+    + id (long) - The id of the event that'll be deleted, which is received as a query parameter. 
+
+
 # Setting Up the Development Environment
 
 For development, you need Maven and PostgreSQL installed on your computer.
