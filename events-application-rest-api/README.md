@@ -132,7 +132,7 @@ You may delete an event using this action. It takes a query param to know which 
 + Request (application/json)
 ```json
 {
-  "id": "30",
+  "id": "30"
 }
 ```
 + Response 204 (No Content)
