@@ -1,10 +1,13 @@
-package com.bounswe.bounswe2017group3;
+package com.bounswe.bounswe2017group3.Model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Table(name = "events")
@@ -42,6 +45,11 @@ public class Event implements Serializable {
      * Location of the event.
      */
     private String location;
+    
+    /**
+     * Deletion Date of the event.
+     */
+    private Date deletedAt;
 
     /**
      * Returns the id of the event.
@@ -116,10 +124,23 @@ public class Event implements Serializable {
     public Date getDate(){ return date;}
 
     /**
-     * Sets the date od the event.
+     * Sets the date of the event.
      * @param date date of the event.
      */
     public void setDate(Date date) {this.date = date;}
+    
+    /**
+     * Returns the deletion date of the event.
+     *
+     * @return date of the event.
+     */
+    public Date getDeletedAt(){ return deletedAt;}
+
+    /**
+     * Sets the deletion date of the event.
+     * @param date date of the event.
+     */
+    public void setDeletedAt(Date deletedAt) {this.deletedAt = deletedAt;}
     
     /*
     Privacy Option
@@ -133,6 +154,7 @@ public class Event implements Serializable {
     //Sets the privacy option of the event.
     public void setPrivacy(Boolean privacy) {this.privacy = privacy;}
     
+
     /**
      * Returns the string representation of the event object.
      *
