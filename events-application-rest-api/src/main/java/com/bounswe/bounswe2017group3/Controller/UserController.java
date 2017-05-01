@@ -51,6 +51,12 @@ public class UserController {
 
         return repository.findByUsername(username);
     }
+    
+    @RequestMapping(method = RequestMethod.GET, value = "", params="fullname",
+        produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public @ResponseBody User userByFullname(@RequestParam("fullname") String fullname){
+        return repository.findByUsername(fullname);
+    }
 
     @RequestMapping(method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
