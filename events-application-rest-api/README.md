@@ -124,11 +124,31 @@ You may update a user using this action. It takes a JSON object containing the n
 
 ### Delete an Event [DELETE]
 
-You may delete an event using this action. It takes a query param to know which user to update.
+You may delete an event using this action. It takes a query param to know which user to delete. The deletedAt attribute of the deleted user will be set to the current date.
 
 + Parameters
     + id (long) - The id of the event that'll be deleted, which is received as a query parameter. 
 
++ Request (application/json)
+```json
+{
+  "id": "30",
+}
+```
++ Response 204 (No Content)
+
++ Deleted Event with deletedAt field set after deletion (application/json)
+```
+{
+ "id": 30,
+ "name": "deneme231",
+ "description": null,
+ "date": null,
+ "location": null,
+ "deletedAt": 1493645656885,
+ "privacy": false
+}
+```
 
 # Setting Up the Development Environment
 
