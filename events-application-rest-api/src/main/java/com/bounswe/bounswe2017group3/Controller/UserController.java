@@ -51,13 +51,18 @@ public class UserController {
 
         return repository.findByUsername(username);
     }
+    
+    @RequestMapping(method = RequestMethod.GET, value = "", params="fullname",
+        produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public @ResponseBody User userByFullname(@RequestParam("fullname") String fullname){
+        return repository.findByFullname(fullname);
+    }
 
     @RequestMapping(method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public @ResponseBody List<User> user(ModelMap model) {
         return repository.findAll();
     }
-
 
     @RequestMapping(method=RequestMethod.PUT, value="/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
       public @ResponseBody User update(@PathVariable("id") long id,
