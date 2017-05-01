@@ -55,7 +55,7 @@ public class UserController {
     @RequestMapping(method = RequestMethod.GET, value = "", params="fullname",
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public @ResponseBody User userByFullname(@RequestParam("fullname") String fullname){
-        return repository.findByUsername(fullname);
+        return repository.findByFullname(fullname);
     }
 
     @RequestMapping(method = RequestMethod.GET,
