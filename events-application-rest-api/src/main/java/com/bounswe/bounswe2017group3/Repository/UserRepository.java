@@ -12,6 +12,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     public User findByUsername(String username);
 
     public User findById(long id);
+    
+    public User findByFullname(String fullname);
 
     @Query("SELECT COUNT(u) FROM User u where u.username = :username")
     public int numberOfUsersWithUsername(@Param("username") String username);
