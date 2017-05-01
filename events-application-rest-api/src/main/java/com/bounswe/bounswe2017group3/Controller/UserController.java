@@ -64,7 +64,6 @@ public class UserController {
         return repository.findAll();
     }
 
-
     @RequestMapping(method=RequestMethod.PUT, value="/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
       public @ResponseBody User update(@PathVariable("id") long id,
                                        @RequestParam MultiValueMap<String, String> params) {
