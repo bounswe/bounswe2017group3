@@ -91,7 +91,7 @@ public class EventController {
     }
     
     @RequestMapping(method=RequestMethod.DELETE, params="id", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public @ResponseBody Event deleteEvent(@RequestParam("id") long id,
+    public @ResponseBody void deleteEvent(@RequestParam("id") long id,
                                      @RequestParam MultiValueMap<String, String> params) {
     	
       Event update = repository.findById(id);
@@ -99,7 +99,7 @@ public class EventController {
       Calendar cal = Calendar.getInstance();
       Date date = cal.getTime();
       update.setDeletedAt(date);
-      return repository.save(update);
+      repository.save(update);
    }
 
     @ExceptionHandler(CustomException.class)
