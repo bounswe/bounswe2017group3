@@ -75,3 +75,13 @@ changeSet:
           name: privacy
           type: boolean
       tableName: events
+changeSet:
+  id: 5
+  author: MuratToygar
+  changes:
+  - addColumn:
+      columns:
+      - column:
+          name: deletedAt
+          type: timestamp
+      tableName: events

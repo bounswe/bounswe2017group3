@@ -13,9 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bounswe.bounswe2017group3;
+package com.bounswe.bounswe2017group3.Controller;
 
 import com.bounswe.bounswe2017group3.Exception.CustomException;
+import com.bounswe.bounswe2017group3.ErrorResponse;
+import com.bounswe.bounswe2017group3.Model.Event;
+import com.bounswe.bounswe2017group3.Model.User;
+import com.bounswe.bounswe2017group3.Repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -25,6 +29,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
 import javax.validation.Valid;
 import java.util.List;
 import org.springframework.http.HttpStatus;
@@ -35,11 +41,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Calendar;
+
 @Controller
 @RequestMapping("/event")
 public class EventController {
 
-    private EventRepository repository;
+    private static final Date NULL = null;
+	private EventRepository repository;
 
     @Autowired
     public EventController(EventRepository repository) {
@@ -78,6 +91,19 @@ public class EventController {
         return event;
 
     }
+    
+    //Delete method is implemented to delete an event.
+    @RequestMapping(method=RequestMethod.DELETE, params="id", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public @ResponseBody ResponseEntity<Void> deleteEvent(@RequestParam("id") long id) {
+    	
+      Event update = repository.findById(id);
+
+      Calendar cal = Calendar.getInstance();
+      Date date = cal.getTime();
+      update.setDeletedAt(date);
+      repository.save(update);
+      return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+   }
 
     @ExceptionHandler(CustomException.class)
     public ResponseEntity<ErrorResponse> exceptionHandler(Exception ex) {
