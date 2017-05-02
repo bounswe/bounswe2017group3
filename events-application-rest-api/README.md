@@ -150,6 +150,53 @@ You may delete an event using this action. It takes a query param to know which 
 }
 ```
 
+### Delete an User [DELETE]
+
+You may delete an user using this action. It takes a query param to know which user to delete. The deletedAt attribute of the deleted user will be set to the current date.
+
++ Parameters
++ username (String) - The username of the user that'll be deleted, which is received as a query parameter. 
++ id (long) - The id of the user that'll be deleted. 
+
++ Request (application/json)
+```json
+{
+"id": 1
+}
+```
++ Response 204 (No Content)
+
++ Deleted User with deletedAt field set after deletion (application/json)
+```
+{
+"id": 1,
+"username": "deneme",
+"email": null,
+"fullname": null,
+"deletedAt": 1493645656885
+}
+```
+
++ Request (application/json)
+```json
+{
+"username": "deneme"
+}
+```
++ Response 204 (No Content)
+
++ Deleted User with deletedAt field set after deletion (application/json)
+```
+{
+"id": 1,
+"username": "deneme",
+"email": null,
+"fullname": null,
+"deletedAt": 1493645656885
+}
+```
+
+
 # Setting Up the Development Environment
 
 For development, you need Maven and PostgreSQL installed on your computer.
