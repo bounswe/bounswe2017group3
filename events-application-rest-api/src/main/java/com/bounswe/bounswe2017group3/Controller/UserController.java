@@ -30,6 +30,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -130,6 +133,41 @@ public class UserController {
         }
         return user;
     }
+    
+  //Delete method is implemented to delete an user.
+    @RequestMapping(method=RequestMethod.DELETE, value="/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public @ResponseBody ResponseEntity<Void> deleteUserById(@PathVariable("id") long id) {
+    	
+      User update = repository.findById(id);
+
+      Calendar cal = Calendar.getInstance();
+      Date date = cal.getTime();
+      update.setDeletedAt(date);
+      update.setEmail(null);
+      update.setFullname(null);
+      repository.save(update);
+      
+      return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+   }
+    
+    
+    //Delete method is implemented to delete an user.
+    @RequestMapping(method=RequestMethod.DELETE,value="", params="username", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public @ResponseBody ResponseEntity<Void> deleteUserByUsername(@RequestParam("username") String username) {
+    	
+      User update = repository.findByUsername(username);
+
+      Calendar cal = Calendar.getInstance();
+      Date date = cal.getTime();
+      update.setDeletedAt(date);
+      update.setEmail(null);
+      update.setFullname(null);
+      repository.save(update);
+      return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+   }
+
+    
+    
 
     @ExceptionHandler(CustomException.class)
     public ResponseEntity<ErrorResponse> exceptionHandler(CustomException ex) {
