@@ -2,10 +2,12 @@ package com.bounswe.bounswe2017group3.Model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 
 @Table(name = "users")
 @Entity
@@ -45,7 +47,12 @@ public class User implements Serializable {
      * Name and surname of the user.
      */
     private String fullname;
-
+     
+    /**
+     * Deletion Date of the user.
+     */
+    private Date deletedAt;
+    
     /**
      * Returns the id of the user.
      *
@@ -117,6 +124,21 @@ public class User implements Serializable {
     public void setFullname(String fullname) {
         this.fullname = fullname;
     }
+    
+    /**
+     * Returns the deletion date of the user.
+     *
+     * @return date of the user.
+     */
+    public Date getDeletedAt(){ return deletedAt;}
+
+    /**
+     * Sets the deletion date of the user.
+     * @param date date of the user.
+     */
+    public void setDeletedAt(Date deletedAt) {this.deletedAt = deletedAt;}
+    
+    
 
     /**
      * Returns the string representation of the user object.
