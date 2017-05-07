@@ -47,22 +47,32 @@ public class User implements Serializable {
      * Name and surname of the user.
      */
     private String fullname;
-     
+
     /**
      * Deletion Date of the user.
      */
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date deletedAt;
-    
-    
+
+    /**
+     * Constructs an empty User object.
+     */
     public User(){  }
-       
+
+    /**
+     * Constructs an User object with the given details.
+     * @param username Username of the user
+     * @param fullname Full name of the user
+     * @param email Email of the user
+     * @param password Password of the user
+     */
     public User( String username, String fullname, String email, String password) {
        setUsername(username);
        setFullname(fullname);
        setEmail(email);
        setPassword(password);
     }
+
     /**
      * Returns the id of the user.
      *
@@ -134,21 +144,21 @@ public class User implements Serializable {
     public void setFullname(String fullname) {
         this.fullname = fullname;
     }
-    
+
     /**
      * Returns the deletion date of the user.
      *
      * @return date of the user.
      */
-    public Date getDeletedAt(){ return deletedAt;}
+    public Date getDeletedAt() { return deletedAt;}
 
     /**
      * Sets the deletion date of the user.
+     *
      * @param date date of the user.
      */
     public void setDeletedAt(Date deletedAt) {this.deletedAt = deletedAt;}
-    
-    
+
 
     /**
      * Returns the string representation of the user object.

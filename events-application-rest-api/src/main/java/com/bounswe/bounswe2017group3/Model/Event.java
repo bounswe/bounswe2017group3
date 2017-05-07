@@ -1,6 +1,7 @@
 package com.bounswe.bounswe2017group3.Model;
 
 import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
@@ -45,7 +46,7 @@ public class Event implements Serializable {
      * Location of the event.
      */
     private String location;
-    
+
     /**
      * Deletion Date of the event.
      */
@@ -113,7 +114,7 @@ public class Event implements Serializable {
      * @param location location of the event.
      */
     public void setLocation(String location) {
-        this.location =location;
+        this.location = location;
     }
 
     /**
@@ -121,39 +122,41 @@ public class Event implements Serializable {
      *
      * @return date of the event.
      */
-    public Date getDate(){ return date;}
+    public Date getDate() { return date;}
 
     /**
      * Sets the date of the event.
+     *
      * @param date date of the event.
      */
     public void setDate(Date date) {this.date = date;}
-    
+
     /**
      * Returns the deletion date of the event.
      *
      * @return date of the event.
      */
-    public Date getDeletedAt(){ return deletedAt;}
+    public Date getDeletedAt() { return deletedAt;}
 
     /**
      * Sets the deletion date of the event.
+     *
      * @param date date of the event.
      */
     public void setDeletedAt(Date deletedAt) {this.deletedAt = deletedAt;}
-    
+
     /*
     Privacy Option
     */
     @NotNull                  //Privacy option cannot be null
     private Boolean privacy;  //Privacy option of the event.
-    
+
     //Returns the privacy option of the event.
     public Boolean getPrivacy() {return privacy;}
-    
+
     //Sets the privacy option of the event.
     public void setPrivacy(Boolean privacy) {this.privacy = privacy;}
-    
+
 
     /**
      * Returns the string representation of the event object.
@@ -163,12 +166,12 @@ public class Event implements Serializable {
     @Override
     public String toString() {
         return "Event{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", date='" + date + '\'' +
-                ", location='" + location + '\'' +
-                ", privacy='" + privacy + '\'' +
-                '}';
+               "id=" + id +
+               ", name='" + name + '\'' +
+               ", description='" + description + '\'' +
+               ", date='" + date + '\'' +
+               ", location='" + location + '\'' +
+               ", privacy='" + privacy + '\'' +
+               '}';
     }
 }
