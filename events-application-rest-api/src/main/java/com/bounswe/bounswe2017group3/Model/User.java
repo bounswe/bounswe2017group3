@@ -55,9 +55,8 @@ public class User implements Serializable {
     private Date deletedAt;
     
     
-    public User(){
-        
-    }
+    public User(){  }
+       
     public User( String username, String fullname, String email, String password) {
        setUsername(username);
        setFullname(fullname);
