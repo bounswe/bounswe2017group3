@@ -51,8 +51,19 @@ public class User implements Serializable {
     /**
      * Deletion Date of the user.
      */
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date deletedAt;
     
+    
+    public User(){
+        
+    }
+    public User( String username, String fullname, String email, String password) {
+       setUsername(username);
+       setFullname(fullname);
+       setEmail(email);
+       setPassword(password);
+    }
     /**
      * Returns the id of the user.
      *
