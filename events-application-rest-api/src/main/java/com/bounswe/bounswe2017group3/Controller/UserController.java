@@ -61,6 +61,12 @@ public class UserController {
         return repository.findByFullname(fullname);
     }
 
+     @RequestMapping(method = RequestMethod.GET, value = "", params="id",
+        produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public @ResponseBody User userById(@RequestParam("id") long id){
+        return repository.findById(id);
+    }
+
     @RequestMapping(method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public @ResponseBody List<User> user(ModelMap model) {
