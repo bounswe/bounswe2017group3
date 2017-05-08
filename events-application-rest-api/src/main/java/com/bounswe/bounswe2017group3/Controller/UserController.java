@@ -49,7 +49,6 @@ public class UserController {
     public
     @ResponseBody
     User userByUsername(@RequestParam("username") String username) {
-
         return repository.findByUsername(username);
     }
 

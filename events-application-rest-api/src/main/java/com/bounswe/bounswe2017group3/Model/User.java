@@ -148,17 +148,16 @@ public class User implements Serializable {
     /**
      * Returns the deletion date of the user.
      *
-     * @return date of the user.
+     * @return Date of deletion of the user.
      */
     public Date getDeletedAt() { return deletedAt;}
 
     /**
      * Sets the deletion date of the user.
      *
-     * @param date date of the user.
+     * @param deletedAt Date of deletion of the user.
      */
     public void setDeletedAt(Date deletedAt) {this.deletedAt = deletedAt;}
-
 
     /**
      * Returns the string representation of the user object.
