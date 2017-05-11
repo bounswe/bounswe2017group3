@@ -50,8 +50,30 @@ public class Event implements Serializable {
     /**
      * Deletion Date of the event.
      */
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date deletedAt;
 
+    /**
+     * Constructs an empty Event object.
+     */
+    public Event(){  }
+
+    /**
+     * Constructs an Event object with the given details.
+     * @param name Name of the event
+     * @param description Description of the event
+     * @param location Location of the event
+     * @param date Date of the event
+     * @param privacy Privacy of the event
+     */
+    public Event( String name, String description, String location, Date date, Boolean privacy) {
+       setName(name);
+       setDescription(description);
+       setLocation(location);
+       setDate(date);
+       setPrivacy(privacy);
+    }
+    
     /**
      * Returns the id of the event.
      *
