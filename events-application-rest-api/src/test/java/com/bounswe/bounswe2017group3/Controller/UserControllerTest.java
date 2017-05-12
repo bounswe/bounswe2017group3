@@ -24,6 +24,7 @@ import java.util.List;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request
     .MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result
@@ -47,6 +48,7 @@ public class UserControllerTest {
                                      "gokce@gmail.com", "123123");
     private final User u2 = new User("samed", "Samed Düzçay",
                                      "smddzcy@gmail.com", "123456");
+    
     private final List<User> users = Arrays.asList(u1, u2);
 
     @Before
@@ -60,7 +62,8 @@ public class UserControllerTest {
         Mockito.when(repo.findAll()).thenReturn(users);
         Mockito.when(repo.findByUsername("samed")).thenReturn(u2);
         Mockito.when(repo.findByFullname("Samed Düzçay")).thenReturn(u2);
-        Mockito.when(repo.findByFullname("Samed Düzçay")).thenReturn(u2);
+        Mockito.when(repo.findById(u1.getId())).thenReturn(u1);
+
     }
 
     /**
@@ -129,6 +132,37 @@ public class UserControllerTest {
         verifyNoMoreInteractions(repo);
     }
 
+    /**
+     * Tests <code>DELETE /user/id</code> endpoint
+     * @throws Exception
+     */
+    @Test
+    public void test_delete_user_ById() throws Exception {
+        mockMvc.perform(
+                        delete("/user/{id}", u1.getId()))
+        .andExpect(status().isNoContent());
+        verify(repo, times(1)).findById(u1.getId());
+        verify(repo, times(1)).save(u1);
+        verifyNoMoreInteractions(repo);
+    }
+    
+    
+    /**
+     * Tests <code>DELETE /user?username</code> endpoint
+     * @throws Exception
+     */
+    @Test
+    public void test_delete_user_ByUsername() throws Exception {
+        mockMvc.perform(
+                        delete("/user?username={username}", u2.getUsername()))
+                   .andExpect(status().isNoContent());
+                   verify(repo, times(1)).findByUsername(u2.getUsername());
+                   verify(repo, times(1)).save(u2);
+                        verifyNoMoreInteractions(repo);
+                        }
+                            
+    
+    
     /**
      * Returns the given object in its JSON string format.
      *
