@@ -127,8 +127,8 @@ You may update a user using this action. It takes a JSON object containing the n
 You may delete an user using this action. It takes a query param to know which user to delete. The deletedAt attribute of the deleted user will be set to the current date.
 
 + Parameters
-+ username (String) - The username of the user that'll be deleted, which is received as a query parameter. 
-+ id (long) - The id of the user that'll be deleted. 
+  + username (String) - The username of the user that'll be deleted, which is received as a query parameter. 
+  + id (long) - The id of the user that'll be deleted. 
 
 + Request (application/json)
 ```json
