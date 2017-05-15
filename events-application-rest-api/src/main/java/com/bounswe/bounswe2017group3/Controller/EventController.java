@@ -44,6 +44,14 @@ public class EventController {
         this.repository = repository;
     }
 
+    @RequestMapping(method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public
+    @ResponseBody
+    List<Event> event() {
+        return repository.findAll();
+    }
+
     @RequestMapping(method = RequestMethod.GET, value = "",
         params = "name",
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
