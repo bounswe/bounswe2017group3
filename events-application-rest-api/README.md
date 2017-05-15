@@ -28,7 +28,7 @@ This resource does not have any attributes. Instead it offers some information a
     + username (optional, string) - The username of the user to retrieve
     + email (optional, string) - The email of the user to retrieve
 
-A User object has the following attributes:
+A `User` object has the following attributes:
 
 + id (set automatically)
 + username
@@ -84,7 +84,7 @@ You may create your own user using this action. It takes a JSON object containin
 }
 ```
 
-+ Response 200 (application/json)
++ Response 201 (application/json)
 
 ```json
 {
@@ -119,34 +119,6 @@ You may update a user using this action. It takes a JSON object containing the n
   "username": "smddzcy",
   "email": "smddzcy@gmail.com",
   "fullname": "Ahmet Büyük"
-}
-```
-
-### Delete an Event [DELETE]
-
-You may delete an event using this action. It takes a query param to know which user to delete. The deletedAt attribute of the deleted user will be set to the current date.
-
-+ Parameters
-    + id (long) - The id of the event that'll be deleted, which is received as a query parameter. 
-
-+ Request (application/json)
-```json
-{
-  "id": "30"
-}
-```
-+ Response 204 (No Content)
-
-+ Deleted Event with deletedAt field set after deletion (application/json)
-```
-{
- "id": 30,
- "name": "deneme231",
- "description": null,
- "date": null,
- "location": null,
- "deletedAt": 1493645656885,
- "privacy": false
 }
 ```
 
@@ -196,6 +168,109 @@ You may delete an user using this action. It takes a query param to know which u
 }
 ```
 
+## Events Collection [/event{?name&privacy}]
+
++ Parameters
+    + name (optional, string) - The name of the event to retrieve
+    + privacy (optional, boolean) - The privacy of the event to retrieve
+
+A `Event` object has the following attributes:
+
++ id (set automatically)
++ name
++ description (optional)
++ date (optional)
++ location (optional)
++ privacy
+
+### List All Events [GET]
+
++ Response 200 (application/json)
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Tennis Event",
+    "description": "Private tennis match",
+    "date": "21.05.2017 17:00",
+    "location": "Bebek / Istanbul",
+    "privacy": true
+  },
+   {
+    "id": 2,
+    "name": "FB / GS Match",
+    "description": null,
+    "date": "23.05.2017 17:00",
+    "location": "Şükrü Saraçoğlu",
+    "privacy": false
+  }
+]
+```
+
+### Create a New Event [POST]
+
+You may create your own event using this action. It takes a JSON object containing the event fields with its values.
+
++ Parameters
+    + name (string) - Name of the event
+    + description (string, optional) - Description of the event
+    + date (datetime, optional) - Date and time of the event
+    + location (string, optional) - Location of the event
+    + privacy (boolean) - Is the event private or public (True if private, false if public)
+
++ Request (application/json)
+
+```json
+{
+  "name": "Tennis Event",
+  "description": "Private tennis match",
+  "date": "21.05.2017 17:00",
+  "location": "Bebek / Istanbul",
+  "privacy": true
+}
+```
+
++ Response 201 (application/json)
+
+```json
+{
+  "id": 1,
+  "name": "Tennis Event",
+  "description": "Private tennis match",
+  "date": "21.05.2017 17:00",
+  "location": "Bebek / Istanbul",
+  "privacy": true
+}
+```
+
+### Delete an Event [DELETE]
+
+You may delete an event using this action. It takes a query param to know which event to delete. The deletedAt attribute of the deleted event will be set to the current date.
+
++ Parameters
+    + id (long) - The id of the event that'll be deleted, which is received as a query parameter. 
+
++ Request (application/json)
+```json
+{
+  "id": "30"
+}
+```
++ Response 204 (No Content)
+
++ Deleted Event with deletedAt field set after deletion (application/json)
+```
+{
+ "id": 30,
+ "name": "deneme231",
+ "description": null,
+ "date": null,
+ "location": null,
+ "deletedAt": 1493645656885,
+ "privacy": false
+}
+```
 
 # Setting Up the Development Environment
 
