@@ -91,12 +91,11 @@ public class EventController {
     }
 
     //Delete method is implemented to delete an event.
-    @RequestMapping(method = RequestMethod.DELETE, params = "id", produces =
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}", produces =
         MediaType.APPLICATION_JSON_UTF8_VALUE)
     public
     @ResponseBody
-    ResponseEntity<Void> deleteEvent(@RequestParam("id") long id) {
-
+    ResponseEntity<Void> deleteEvent(@PathVariable("id") long id) {
         Event update = repository.findById(id);
 
         Calendar cal = Calendar.getInstance();
